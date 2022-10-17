@@ -6,23 +6,22 @@ import {
 import { Link } from "react-router-dom"
 import Box from '@mui/material/Box'
 
-const UtilListActions = () => {
+const UtilListActions = () => (
     <TopToolbar>
         <CreateButton/>
         <ExportButton/>
     </TopToolbar>
-}
+);
 
 export const UnitList = () => (
     <List actions={<UtilListActions/>}>
-        <Datagrid>
+        <Datagrid rowClick="show">
             <NumberField source="id" />
             <TextField source="unitType" sortBy="unit_type_id" />
             <TextField source="decimalName" sortBy="decimal_name" />
             <TextField source="bomFileStatus" sortBy="bom_file_status" />
             <DateField source="createdAt" sortBy="created_at" />
             <EditButton/>
-            <ShowButton/>
         </Datagrid>
     </List>
 );
