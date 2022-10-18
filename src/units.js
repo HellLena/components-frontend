@@ -30,7 +30,7 @@ export const UnitList = () => (
     <List actions={<UtilListActions/>}>
         <Datagrid rowClick="show">
             <NumberField source="id" />
-            <TextField source="unitType" sortBy="unit_type_id" label="Тип сборочной единицы" />
+            <TextField source="unitType.name" sortBy="unit_type.name" label="Тип сборочной единицы" />
             <TextField source="decimalName" sortBy="decimal_name" label="Децимальный номер" />
             <WrapperField label="Статус BoM файла">
                 <StatusIcon source="bomFileStatus.name" />&nbsp;
@@ -53,6 +53,7 @@ export const UnitShow = () => (
                 <TextField source="bomFileStatus.description" sortBy="bom_file_status" />
             </WrapperField>
             <DateField source="createdAt" label="Дата создания" locales="ru-RU" showTime={true} />
+            <DateField source="updatedAt" label="Дата обновления" locales="ru-RU" showTime={true} />
         </SimpleShowLayout>
     </Show>
 );
@@ -60,12 +61,12 @@ export const UnitShow = () => (
 export const UnitEdit = () => {
     const createPath = useCreatePath();
     return (
-        <Edit>
+        <Edit redirect="show" mutationMode="pessimistic">
             <SimpleForm warnWhenUnsavedChanges>
                 <Box display={{ xs: 'block', sm: 'flex', width: '100%'}}>
                     <Box flex={1} mr={{ xs: 0, sm: '0.5em'}}>
                         <ReferenceInput
-                                source="id"
+                                source="unitType.id"
                                 reference="unit-types"
                                 sort={{ field: 'name' }}>
                             <SelectInput 

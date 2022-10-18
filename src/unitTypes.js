@@ -1,6 +1,6 @@
 import {
-    List, Show, Datagrid, NumberField, TextField, DateField, BooleanField, EditButton, ShowButton,
-    Create, Edit, SimpleForm, TextInput, required, TopToolbar, CreateButton, SaveButton, Toolbar,
+    List, Show, Datagrid, NumberField, TextField, EditButton, 
+    Create, Edit, SimpleForm, TextInput, required, TopToolbar, CreateButton,
     SimpleShowLayout
 } from 'react-admin';
 
@@ -36,16 +36,10 @@ export const UnitTypeCreate = () => (
     </Create>
 );
 
-export const UnitTypeEditToolbar = props => (
-    <Toolbar {...props} >
-        <SaveButton/>
-    </Toolbar>
-);
-
 export const UnitTypeEdit = () => {
     return (
-        <Edit>
-            <SimpleForm toolbar={<UnitTypeEditToolbar/>} warnWhenUnsavedChanges>                
+        <Edit redirect="show" mutationMode="pessimistic">
+            <SimpleForm warnWhenUnsavedChanges>                
                 <TextInput source="name" label="Наименование типа сборочной единицы" validate={required()} fullWidth />
             </SimpleForm>
         </Edit>
